@@ -10,8 +10,10 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var hud: MBProgressHUD = MBProgressHUD()
-    var movies : [Dictionary<String, AnyObject>] = []
+    let API_KEY = "esm6sfwy2f2x8brqh3gv6ukk"
+
+    var hud = MBProgressHUD()
+    var movies = [NSDictionary]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +22,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        fetchMovies()
+        fetchBoxOffice()
     }
 
     // #pragma mark - Segues
@@ -29,8 +30,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let movie = movies[indexPath.row]
-            (segue.destinationViewController as DetailViewController).detailItem = movie["synopsis"].description
+            (segue.destinationViewController as DetailViewController).detailItem = movies[indexPath.row]
         }
     }
 
@@ -43,33 +43,48 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         let movie = movies[indexPath.row]
-        cell.textLabel.text = movie["title"].description
+        cell.detailTextLabel.text = movie["synopsis"] as? String
+        cell.textLabel.text = movie["title"] as? String
+
+        if let posters = movie["posters"] as? NSDictionary {
+            if let thumb = posters["thumbnail"] as? String {
+                let request = NSURLRequest(URL: NSURL(string: thumb))
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { response, data, error in
+                    if !error {
+                        cell.imageView.image = UIImage(data: data)
+                        cell.setNeedsLayout()
+                    }
+                }
+            }
+        }
         return cell
     }
 
     // #pragma mark - Private
 
-    func fetchMovies() {
-        let url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
+    func fetchBoxOffice() {
+        hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+
+        let url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=\(API_KEY)";
         let request = NSURLRequest(URL: NSURL(string: url))
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { response, data, error in
             if error {
-                NSLog("%@", error)
-            } else {
-                var error: NSError?
-                var object : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error:&error)
-                if object is NSDictionary {
-                    if object["error"] {
-                        self.hud.mode = MBProgressHUDModeText
-                        self.hud.labelText = object["error"].description
-                        self.hud.hide(true, afterDelay: 5)
-                    } else {
-                        self.movies = object["movies"] as [Dictionary<String, AnyObject>]
-                        self.tableView.reloadData()
-                        self.hud.hide(true)
-                    }
-                } else {
-                    NSLog("Unexpected object %@ %@", error.description, object.description);
+                println("HTTP error: \(error.description)")
+                return;
+            }
+            var error: NSError?
+            let object = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error:&error) as? NSDictionary
+            if let e = error {
+                println("JSON error: \(e.description)")
+            } else if let dict = object {
+                if let e = dict["error"] as? String {
+                    self.hud.mode = MBProgressHUDModeText
+                    self.hud.labelText = e
+                    self.hud.hide(true, afterDelay: 5.0)
+                } else if let movies = dict["movies"] as? [NSDictionary] {
+                    self.movies = movies
+                    self.tableView.reloadData()
+                    self.hud.hide(true)
                 }
             }
         }
