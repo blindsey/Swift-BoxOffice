@@ -31,8 +31,8 @@ class DetailViewController: UIViewController {
             }
             if let label = synopsisLabel {
                 label.text = dict["synopsis"] as? String
-                label.sizeToFit();
-                scrollView.contentSize = CGSize(width: 320, height: CGRectGetMaxY(label.frame))
+                label.sizeToFit()
+                scrollView.contentSize = CGSize(width: 320.0, height: CGRectGetMaxY(label.frame) + 144.0)
             }
             if let view = posterImageView {
                 if let posters = dict["posters"] as? NSDictionary {

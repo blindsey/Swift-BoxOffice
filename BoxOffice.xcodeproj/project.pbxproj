@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1320D040197A52C200B0CA0A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320D03F197A52C200B0CA0A /* MovieTableViewCell.swift */; };
 		134CB85C1974F06D002387DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CB85B1974F06D002387DD /* AppDelegate.swift */; };
 		134CB85E1974F06D002387DD /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CB85D1974F06D002387DD /* MasterViewController.swift */; };
 		134CB8601974F06D002387DD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CB85F1974F06D002387DD /* DetailViewController.swift */; };
@@ -14,6 +15,8 @@
 		134CB8651974F06D002387DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 134CB8641974F06D002387DD /* Images.xcassets */; };
 		134CB8711974F06D002387DD /* BoxOfficeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134CB8701974F06D002387DD /* BoxOfficeTests.swift */; };
 		134CB87D1974F07E002387DD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 134CB87C1974F07E002387DD /* MBProgressHUD.m */; };
+		137A5D7F197A66FD005F5C6C /* movie.png in Resources */ = {isa = PBXBuildFile; fileRef = 137A5D7E197A66FD005F5C6C /* movie.png */; };
+		137A5D83197A6953005F5C6C /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = 137A5D82197A6953005F5C6C /* tv.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1320D03F197A52C200B0CA0A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		134CB8561974F06D002387DD /* BoxOffice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		134CB85A1974F06D002387DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		134CB85B1974F06D002387DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		134CB87A1974F07D002387DD /* BoxOffice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BoxOffice-Bridging-Header.h"; sourceTree = "<group>"; };
 		134CB87B1974F07E002387DD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		134CB87C1974F07E002387DD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		137A5D7E197A66FD005F5C6C /* movie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie.png; sourceTree = "<group>"; };
+		137A5D82197A6953005F5C6C /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,14 +88,17 @@
 			isa = PBXGroup;
 			children = (
 				134CB85B1974F06D002387DD /* AppDelegate.swift */,
+				1320D03F197A52C200B0CA0A /* MovieTableViewCell.swift */,
 				134CB85D1974F06D002387DD /* MasterViewController.swift */,
 				134CB85F1974F06D002387DD /* DetailViewController.swift */,
 				134CB8611974F06D002387DD /* Main.storyboard */,
-				134CB87B1974F07E002387DD /* MBProgressHUD.h */,
-				134CB87C1974F07E002387DD /* MBProgressHUD.m */,
+				137A5D7E197A66FD005F5C6C /* movie.png */,
+				137A5D82197A6953005F5C6C /* tv.png */,
 				134CB8641974F06D002387DD /* Images.xcassets */,
 				134CB8591974F06D002387DD /* Supporting Files */,
 				134CB87A1974F07D002387DD /* BoxOffice-Bridging-Header.h */,
+				134CB87B1974F07E002387DD /* MBProgressHUD.h */,
+				134CB87C1974F07E002387DD /* MBProgressHUD.m */,
 			);
 			path = BoxOffice;
 			sourceTree = "<group>";
@@ -200,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				134CB8631974F06D002387DD /* Main.storyboard in Resources */,
+				137A5D7F197A66FD005F5C6C /* movie.png in Resources */,
+				137A5D83197A6953005F5C6C /* tv.png in Resources */,
 				134CB8651974F06D002387DD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				134CB8601974F06D002387DD /* DetailViewController.swift in Sources */,
+				1320D040197A52C200B0CA0A /* MovieTableViewCell.swift in Sources */,
 				134CB85E1974F06D002387DD /* MasterViewController.swift in Sources */,
 				134CB85C1974F06D002387DD /* AppDelegate.swift in Sources */,
 				134CB87D1974F07E002387DD /* MBProgressHUD.m in Sources */,
@@ -412,6 +424,7 @@
 				134CB8761974F06D002387DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		134CB8771974F06D002387DD /* Build configuration list for PBXNativeTarget "BoxOfficeTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +433,7 @@
 				134CB8791974F06D002387DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
