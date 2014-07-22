@@ -10,10 +10,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet var posterImageView: UIImageView
-    @IBOutlet var scrollView: UIScrollView
-    @IBOutlet var synopsisLabel: UILabel
-    @IBOutlet var titleLabel: UILabel
+    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var synopsisLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
 
     var detailItem: AnyObject? {
         didSet {
